@@ -2,6 +2,9 @@ namespace '/api/v1/publishers' do
     get '' do
         result = Publisher.all.order(id: :asc).as_json
         halt(200, result.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     post '/new' do
@@ -9,6 +12,9 @@ namespace '/api/v1/publishers' do
         publisher = Publisher.new(values)
         publisher.save
         halt(200, values.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     patch '/update/:id' do
@@ -17,10 +23,16 @@ namespace '/api/v1/publishers' do
         publisher.update(values)
         publisher.save
         halt(200, values.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     delete '/destroy/:id' do |id|
         Publisher.destroy_by(id: id)
         halt(200, "Deleted Publisher id = #{id}")
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 end

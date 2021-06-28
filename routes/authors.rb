@@ -2,6 +2,9 @@ namespace '/api/v1/authors' do
     get '' do
         result = Author.all.order(id: :asc).as_json
         halt(200, result.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     post '/new' do
@@ -9,6 +12,9 @@ namespace '/api/v1/authors' do
         author = Author.new(values)
         author.save
         halt(200, values.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     patch '/update/:id' do
@@ -17,10 +23,16 @@ namespace '/api/v1/authors' do
         author.update(values)
         author.save
         halt(200, values.to_json)
+        
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     delete '/destroy/:id' do |id|
         Author.destroy_by(id: id)
         halt(200, "Deleted author id = #{id}")
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 end

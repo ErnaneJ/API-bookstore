@@ -2,6 +2,9 @@ namespace '/api/v1/likes' do
     get '' do
         result = Like.all.order(id: :asc).as_json
         halt(200, result.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     post '/new' do
@@ -9,10 +12,16 @@ namespace '/api/v1/likes' do
         like = Like.new(values)
         like.save
         halt(200, values.to_json)
+
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 
     delete '/destroy/:id' do |id|
         Like.destroy_by(id: id)
         halt(200, "Deleted like id = #{id}")
+        
+        rescue Exception => e
+            halt(500, {error: e.message}.to_json)
     end
 end

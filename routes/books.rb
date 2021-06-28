@@ -24,6 +24,9 @@ namespace '/api/v1/books' do
     book = Book.new(values)
     book.save
     halt(200, values.to_json)
+
+    rescue Exception => e
+      halt(500, {error: e.message}.to_json)
   end
 
   patch '/update/:id' do
@@ -32,10 +35,16 @@ namespace '/api/v1/books' do
     book.update(values)
     book.save
     halt(200, values.to_json)
+
+    rescue Exception => e
+      halt(500, {error: e.message}.to_json)
   end
 
   delete '/destroy/:id' do |id|
     Book.destroy_by(id: id)
     halt(200, "Deleted book id = #{id}")
+
+    rescue Exception => e
+      halt(500, {error: e.message}.to_json)
   end
 end
