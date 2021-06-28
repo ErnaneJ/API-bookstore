@@ -29,9 +29,13 @@ namespace '/api/v1/publishers' do
     end
 
     delete '/destroy/:id' do |id|
-        Publisher.destroy_by(id: id)
-        halt(200, "Deleted Publisher id = #{id}")
-
+        if(Publisher.exists?(id))
+            Publisher.destroy_by(id: id)
+            Like.delete_by("ref_type = ? AND ref_id = ?", "publisher", id)
+            halt(200, {msg: "Deleted Publisher id = #{id}"}.to_json)
+          else
+            halt(200, {msg: "Publisher with id #{id} not found"}.to_json)
+        end
         rescue Exception => e
             halt(500, {error: e.message}.to_json)
     end

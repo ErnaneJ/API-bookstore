@@ -22,7 +22,7 @@ INSERT INTO publishers (name)
 		('Wolters Kluwer');
 
 # insere os books PUBLICADOS
-INSERT INTO books (name, published, id_publisher, value) 
+INSERT INTO books (name, published, publisher_id, value) 
 	VALUES
 		('A volta dos que nao foram',1,2,10.57),
 		('Em Busca do Tempo Perdido ',1,3,78.65),
@@ -131,16 +131,16 @@ INSERT INTO likes (user_id, ref_type, ref_id)
 		(4, 'author',3),
 		
 		
-		(1, 'editora',2),
-		(2, 'editora',3),
-		(3, 'editora',4),
-		(4, 'editora',2),
-		(5, 'editora',4),
-		(6, 'editora',3),
-		(7, 'editora',2),
-		(8, 'editora',3),
-		(1, 'editora',4),
-		(2, 'editora',2),
+		(1, 'publisher',2),
+		(2, 'publisher',3),
+		(3, 'publisher',4),
+		(4, 'publisher',2),
+		(5, 'publisher',4),
+		(6, 'publisher',3),
+		(7, 'publisher',2),
+		(8, 'publisher',3),
+		(1, 'publisher',4),
+		(2, 'publisher',2),
 	
 		(1, 'user',1),
 		(2, 'user',2),
@@ -155,37 +155,3 @@ INSERT INTO likes (user_id, ref_type, ref_id)
 		(6, 'user',5),
 		(5, 'user',4),
 		(4, 'user',3);
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	

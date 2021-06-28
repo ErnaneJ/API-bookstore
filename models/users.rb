@@ -15,5 +15,5 @@ class User < ActiveRecord::Base
 
     def log_create_action
       puts '.:: Created User'
-    end
+    end  
 end

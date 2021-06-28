@@ -29,10 +29,15 @@ namespace '/api/v1/users' do
     end
 
     delete '/destroy/:id' do |id|
-        User.destroy_by(id: id)
-        halt(200, "Deleted User id = #{id}")
-
-        rescue Exception => e
+        if(User.exists?(id))
+            User.destroy_by(id: id)
+            Like.delete_by("ref_type = ? AND ref_id = ?", "user", id)
+            halt(200, {msg: "Deleted User id = #{id}"}.to_json)
+          else
+            halt(200, {msg: "User with id #{id} not found"}.to_json)
+          end
+      
+          rescue Exception => e
             halt(500, {error: e.message}.to_json)
     end
 end

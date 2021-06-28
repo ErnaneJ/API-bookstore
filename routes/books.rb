@@ -1,5 +1,4 @@
 namespace '/api/v1/books' do
-
   get '' do
     result = Book.all.order(id: :asc).as_json
     halt(200, result.to_json)
@@ -41,8 +40,13 @@ namespace '/api/v1/books' do
   end
 
   delete '/destroy/:id' do |id|
-    Book.destroy_by(id: id)
-    halt(200, "Deleted book id = #{id}")
+    if(Book.exists?(id))
+      Book.destroy_by(id: id)
+      Like.delete_by("ref_type = ? AND ref_id = ?", "book", id)
+      halt(200, {msg: "Deleted book id = #{id}"}.to_json)
+    else
+      halt(200, {msg: "book with id #{id} not found"}.to_json)
+    end
 
     rescue Exception => e
       halt(500, {error: e.message}.to_json)

@@ -19,9 +19,9 @@ CREATE TABLE books (
 	name VARCHAR(45), 
 	published TINYINT(1) DEFAULT 0,
 	value FLOAT,
-	id_publisher INT DEFAULT 1,
+	publisher_id INT DEFAULT 1,
 	PRIMARY KEY (id),
-	FOREIGN KEY (id_publisher) REFERENCES publishers(id)
+	FOREIGN KEY (publisher_id) REFERENCES publishers(id)
 );
 
 CREATE TABLE authors_books ( 
