@@ -1,6 +1,7 @@
 # gems
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/namespace'
 require 'active_record'
 require "sinatra/reloader" if development?
 
@@ -22,7 +23,6 @@ require './routes/books.rb'
 require './routes/likes.rb'
 require './routes/authors.rb'
 require './routes/publishers.rb'
-
 
 get '/' do
   'ok'

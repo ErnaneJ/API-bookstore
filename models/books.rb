@@ -6,14 +6,14 @@ class Book < ActiveRecord::Base
     after_create :log_create_action
 
     def log_destroy_action
-      puts 'Livro deletado'
+      puts '.:: Deleted Book'
     end
 
     def log_update_action
-      puts 'Livro Atualizado'
+      puts '.:: Updated Book'
     end
 
     def log_create_action
-      puts 'Livro Criado'
+      puts '.:: Created Book'
     end
 end

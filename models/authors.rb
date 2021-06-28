@@ -6,14 +6,14 @@ class Author < ActiveRecord::Base
     after_create :log_create_action
 
     def log_destroy_action
-      puts 'Autor deletado'
+      puts '.:: Deleted Author'
     end
 
     def log_update_action
-      puts 'Autor Atualizado'
+      puts '.:: Updated Author'
     end
 
     def log_create_action
-      puts 'Autor Criado'
+      puts '.:: Created Author'
     end
 end

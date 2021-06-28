@@ -3,10 +3,10 @@ class Like < ActiveRecord::Base
     after_create :log_create_action
 
     def log_destroy_action
-      puts 'Like deletado'
+      puts '.:: Deleted Like'
     end
 
     def log_create_action
-      puts 'Like Criado'
+      puts '.:: Created Like'
     end
 end
