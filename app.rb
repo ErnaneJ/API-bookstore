@@ -3,12 +3,11 @@ require 'rake'
 require 'sinatra'
 require 'sinatra/namespace'
 require 'active_record'
-require "sinatra/activerecord/rake"
 require "sinatra/reloader" if development?
 
 # configuracao do banco de dados
 require './config/dbconfig.rb'
-set :database, {adapter: "mysql2", database: "livrariaReal"}
+set :database_file, "./config/database.yml"
 
 # Models
 require './models/users.rb'
