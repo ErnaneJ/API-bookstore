@@ -1,12 +1,14 @@
 # gems
-require 'rubygems'
+require 'rake'
 require 'sinatra'
 require 'sinatra/namespace'
 require 'active_record'
+require "sinatra/activerecord/rake"
 require "sinatra/reloader" if development?
 
 # configuracao do banco de dados
 require './config/dbconfig.rb'
+set :database, {adapter: "mysql2", database: "livrariaReal"}
 
 # Models
 require './models/users.rb'
@@ -14,8 +16,6 @@ require './models/books.rb'
 require './models/likes.rb'
 require './models/authors.rb'
 require './models/publishers.rb'
-
-require './models/authors_books.rb'
 
 # rotas
 require './routes/users.rb'

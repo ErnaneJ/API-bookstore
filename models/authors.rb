@@ -5,6 +5,8 @@ class Author < ActiveRecord::Base
     after_update :log_update_action
     after_create :log_create_action
 
+    validates :name, presence: true
+
     def log_destroy_action
       puts ".:: Deleted Author #{id}"
       Like.delete_by("ref_type = ? AND ref_id = ?", "author", id)
