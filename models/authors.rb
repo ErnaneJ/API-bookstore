@@ -6,14 +6,15 @@ class Author < ActiveRecord::Base
     after_create :log_create_action
 
     def log_destroy_action
-      puts '.:: Deleted Author'
+      puts ".:: Deleted Author #{id}"
+      Like.delete_by("ref_type = ? AND ref_id = ?", "author", id)
     end
 
     def log_update_action
-      puts '.:: Updated Author'
+      puts ".:: Updated Author #{id}"
     end
 
     def log_create_action
-      puts '.:: Created Author'
+      puts ".:: Created Author #{id}"
     end
 end

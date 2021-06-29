@@ -31,7 +31,6 @@ namespace '/api/v1/authors' do
     delete '/destroy/:id' do |id|
         if(Author.exists?(id))
             Author.destroy_by(id: id)
-            Like.delete_by("ref_type = ? AND ref_id = ?", "author", id)
             halt(200, {msg: "Deleted Author id = #{id}"}.to_json)
           else
             halt(200, {msg: "Author with id #{id} not found"}.to_json)

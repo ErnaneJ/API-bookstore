@@ -20,6 +20,7 @@ namespace '/api/v1/likes' do
     delete '/destroy/:id' do |id|
         if(Like.exists?(id))
             Like.destroy_by(id: id)
+            halt(200, {msg: "Deleted like id = #{id}"}.to_json)
         else
             halt(200, {msg: "Like with id #{id} not found"}.to_json)
         end

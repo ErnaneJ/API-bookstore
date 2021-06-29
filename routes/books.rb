@@ -42,7 +42,6 @@ namespace '/api/v1/books' do
   delete '/destroy/:id' do |id|
     if(Book.exists?(id))
       Book.destroy_by(id: id)
-      Like.delete_by("ref_type = ? AND ref_id = ?", "book", id)
       halt(200, {msg: "Deleted book id = #{id}"}.to_json)
     else
       halt(200, {msg: "book with id #{id} not found"}.to_json)
