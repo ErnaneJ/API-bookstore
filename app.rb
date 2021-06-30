@@ -7,7 +7,7 @@ require "sinatra/reloader" if development?
 
 # configuracao do banco de dados
 require './config/dbconfig.rb'
-set :database_file, "./config/database.yml"
+# set :database_file, "./config/database.yml" ?
 
 # Models
 require './models/users.rb'
@@ -24,6 +24,6 @@ require './routes/authors.rb'
 require './routes/publishers.rb'
 
 get '/' do
-  'ok'
+  'Server on :)'
 end
 

@@ -1,9 +1,12 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  port: 3306
   username: ernane
   password: 142536
-  reconnect: true
-  socket: /var/sock/thing.sock
+  host: localhost
+  port: 3306
+  pool: 5
+
+development:
+  <<: *default
+  database: livrariaReal

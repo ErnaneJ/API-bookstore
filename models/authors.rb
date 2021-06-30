@@ -5,7 +5,11 @@ class Author < ActiveRecord::Base
     after_update :log_update_action
     after_create :log_create_action
 
-    validates :name, presence: true
+    scope :likes, -> {find_by_sql("SELECT authors.id, name, birth_date, user_id AS 'like_from_user_id' FROM authors, likes WHERE authors.id = likes.ref_id AND ref_type = 'author' ORDER BY authors.id ASC")}
+    scope :after_date, -> (time){where("birth_date >= ?", time)}
+    scope :before_date, -> (time){where("birth_date <= ?", time)}
+    scope :with_name, -> (n){where("name = ?", n)}
+    scope :order_by_id, -> {order(id: :asc)}
 
     def log_destroy_action
       puts ".:: Deleted Author #{id}"
