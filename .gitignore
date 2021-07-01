@@ -1,2 +1,3 @@
 *.yml
 dbconfig.rb
+.vscode
