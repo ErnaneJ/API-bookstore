@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  database: your_database
+  pool: 5
+  username: your_username
+  password: your_password
