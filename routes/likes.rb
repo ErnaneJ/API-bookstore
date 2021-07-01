@@ -39,8 +39,6 @@ namespace '/api/v1/likes' do
             halt(500, {error: e.message}.to_json)
     end
 
-
-
     post '/new' do
         values = JSON.parse(request.body.read)
         like = Like.new(values)
